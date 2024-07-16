@@ -62,70 +62,71 @@ class _NewsPageState extends State<NewsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.scaffoldColo,
-        bottomNavigationBar: Stack(
-          children: [
-            CurvedNavigationBar(
-              key: _bottomNavigationKey,
-              backgroundColor: Colors.transparent,
-              buttonBackgroundColor: AppColors.buttonNavColor,
-              color: AppColors.navColor,
-              animationDuration: const Duration(milliseconds: 300),
-              animationCurve: Curves.decelerate,
-              items: navItems,
-              onTap: (value) {
-                setState(() {
-                  _pageIndex = value;
-                });
-                WidgetsBinding.instance.addPostFrameCallback((_) {
-                  if (_pageController.hasClients) {
-                    _pageController.animateToPage(
-                      value,
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.ease,
-                    );
-                  }
-                });
-                _pageController.animateToPage(value,
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeInOut);
-              },
-            ),
-            Positioned(
-              bottom: 2,
-              left: _getLabelPosition(),
-              child: Text(
-                _navLabels[_pageIndex],
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
-                ),
+      backgroundColor: AppColors.scaffoldColo,
+      bottomNavigationBar: Stack(
+        children: [
+          CurvedNavigationBar(
+            key: _bottomNavigationKey,
+            backgroundColor: Colors.transparent,
+            buttonBackgroundColor: AppColors.buttonNavColor,
+            color: AppColors.navColor,
+            animationDuration: const Duration(milliseconds: 300),
+            animationCurve: Curves.decelerate,
+            items: navItems,
+            onTap: (value) {
+              setState(() {
+                _pageIndex = value;
+              });
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                if (_pageController.hasClients) {
+                  _pageController.animateToPage(
+                    value,
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.ease,
+                  );
+                }
+              });
+              _pageController.animateToPage(value,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut);
+            },
+          ),
+          Positioned(
+            bottom: 2,
+            left: _getLabelPosition(),
+            child: Text(
+              _navLabels[_pageIndex],
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
               ),
             ),
-          ],
-        ),
-        body: PageView(
-          physics: const NeverScrollableScrollPhysics(),
-          controller: _pageController,
-          // onPageChanged: (value) {
-          //   setState(() {
-          //     _pageIndex = value;
-          //   });
-          // },
-          children: const [
-            HomePage(),
-            //!! put the other pages here
-            Center(
-              child: Text('search'),
-            ),
-            Center(
-              child: Text('save'),
-            ),
-            Center(
-              child: Text('account'),
-            ),
-          ],
-        ));
+          ),
+        ],
+      ),
+      body: PageView(
+        physics: const NeverScrollableScrollPhysics(),
+        controller: _pageController,
+        // onPageChanged: (value) {
+        //   setState(() {
+        //     _pageIndex = value;
+        //   });
+        // },
+        children: const [
+          HomePage(),
+          //!! put the other pages here
+          Center(
+            child: Text('search'),
+          ),
+          Center(
+            child: Text('save'),
+          ),
+          Center(
+            child: Text('account'),
+          ),
+        ],
+      ),
+    );
   }
 }
