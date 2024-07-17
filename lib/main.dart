@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
@@ -54,7 +53,6 @@ class _ChatPageState extends State<ChatPage> {
           stream: supabase.from('Chat').select('*').asStream(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              print(snapshot.data);
               return Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
