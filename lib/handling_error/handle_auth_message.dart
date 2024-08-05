@@ -1,0 +1,1 @@
+class PasswordHasNotSpeicalCharcter implements Exception {}
